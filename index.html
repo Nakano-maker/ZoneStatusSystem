@@ -35,31 +35,59 @@
     .live {
       color: red;
     }
+    #schedule-container {
+      display: none;
+    }
+    #password-container {
+      text-align: center;
+      margin-top: 100px;
+    }
   </style>
 </head>
 <body>
 
-  <h1 id="current-time">現在時刻: --:--:--</h1>
-
-  <div class="zone">
-    <div class="zone-title">Zone1</div>
-    <div class="status" id="status-zone1"></div>
-    <div class="next" id="next-zone1"></div>
+  <div id="password-container">
+    <h1>パスワードを入力してください</h1>
+    <input type="password" id="password" placeholder="パスワード" />
+    <button onclick="checkPassword()">ログイン</button>
   </div>
 
-  <div class="zone">
-    <div class="zone-title">Zone2</div>
-    <div class="status" id="status-zone2"></div>
-    <div class="next" id="next-zone2"></div>
-  </div>
+  <div id="schedule-container">
+    <h1 id="current-time">現在時刻: --:--:--</h1>
 
-  <div class="zone">
-    <div class="zone-title">Zone3</div>
-    <div class="status" id="status-zone3"></div>
-    <div class="next" id="next-zone3"></div>
+    <div class="zone">
+      <div class="zone-title">Zone1</div>
+      <div class="status" id="status-zone1"></div>
+      <div class="next" id="next-zone1"></div>
+    </div>
+
+    <div class="zone">
+      <div class="zone-title">Zone2</div>
+      <div class="status" id="status-zone2"></div>
+      <div class="next" id="next-zone2"></div>
+    </div>
+
+    <div class="zone">
+      <div class="zone-title">Zone3</div>
+      <div class="status" id="status-zone3"></div>
+      <div class="next" id="next-zone3"></div>
+    </div>
   </div>
 
 <script>
+// パスワード確認関数
+function checkPassword() {
+  const password = document.getElementById('password').value;
+  const correctPassword = "Admin"; // 設定したいパスワードをここに記入
+
+  if (password === correctPassword) {
+    document.getElementById('password-container').style.display = 'none';
+    document.getElementById('schedule-container').style.display = 'block';
+  } else {
+    alert('パスワードが間違っています。');
+  }
+}
+
 // データ
 const tc_schedule_zone1 = [
     {"time": "08:09:55", "status": "Test Run"},
@@ -106,7 +134,7 @@ const tc_schedule_zone1 = [
     {"time": "19:37:25", "status": "客入れなし"},
     {"time": "19:52:25", "status": "客入れあり"},
     {"time": "20:07:25", "status": "客入れあり"},
-    {"time": "20:22:25", "status": "最終回"},]; // ← あなたのPythonコードのまま、配列をコピペするだけ
+    {"time": "20:22:25", "status": "最終回"}]; 
 const tc_schedule_zone2 = [
     {"time": "08:21:30", "status": "Test Run"},
     {"time": "08:57:00", "status": "Test Run"},
