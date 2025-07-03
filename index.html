@@ -366,9 +366,9 @@ const tc_schedule_zone3 = [
   } else if (zone === 'zone2') {
     if (elapsed < 132) return '客入れ中';           // 2分12秒 = 132秒
     if (elapsed < 207) return 'インタラクティブ';   // 1分15秒 = 75秒 → 累積132+75=207秒
-    if (elapsed < 684) return '本編再生中';         // 7分39秒 = 459秒 → 累積207+459=666 → 調整して684秒
-    if (elapsed < 714) return '客出し中';           // 30秒 → 累積684+30=714秒
-    if (elapsed < 833) return 'Close';              // 1分59秒 = 119秒 → 累積714+119=833秒
+    if (elapsed < 669) return '本編再生中';         // 7分24秒 = 444秒 → 累積207+444=651 → 調整して669秒
+    if (elapsed < 699) return '客出し中';           // 30秒 → 累積669+30=699秒
+    if (elapsed < 818) return 'Close';              // 1分59秒 = 119秒 → 累積699+119=818秒
   } else if (zone === 'zone3') {
     if (elapsed < 321) return '客入れ中';
     if (elapsed < 573) return '本編再生中';
@@ -393,9 +393,9 @@ const tc_schedule_zone3 = [
     }
 
     function getZoneStatus(schedule, nowSec, zoneType) {
-  const durations = {
-    'zone1': 480 + 213 + 30 + 167,  // 客入れ + 本編 + 出し + Close
-    'zone2': 132 + 75 + 459 + 30 + 119,  // 客入れ(2:12) + インタラクティブ(1:15) + 本編(7:39) + 客出し(0:30) + Close(1:59)
+   const durations = {
+    'zone1': 480 + 213 + 30 + 167,
+    'zone2': 132 + 75 + 444 + 30 + 119,
     'zone3': 321 + 252 + 30 + 150
   };
 
