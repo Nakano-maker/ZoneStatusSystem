@@ -19,7 +19,6 @@
       align-items: center;
     }
 
-    #password-container,
     #schedule-container {
       display: flex;
       flex-direction: column;
@@ -35,26 +34,6 @@
     h1 {
       font-size: 2em;
       margin-bottom: 20px;
-    }
-
-    input[type="password"] {
-      padding: 12px;
-      font-size: 1.2em;
-      border-radius: 8px;
-      border: none;
-      margin-bottom: 15px;
-      width: 80%;
-      max-width: 300px;
-    }
-
-    button {
-      padding: 12px 24px;
-      font-size: 1.2em;
-      border: none;
-      border-radius: 8px;
-      background-color: #444;
-      color: white;
-      cursor: pointer;
     }
 
     .zone {
@@ -92,7 +71,6 @@
     .status.live {
       color: red;
       font-weight: bold;
-      /* 点滅を削除 */
       animation: none !important;
     }
 
@@ -125,7 +103,6 @@
       z-index: 999;
     }
 
-    /* モバイル最適化 */
     @media (max-width: 480px) {
       h1 {
         font-size: 1.5em;
@@ -143,16 +120,6 @@
         font-size: 1em;
       }
 
-      input[type="password"] {
-        font-size: 1em;
-        padding: 10px;
-      }
-
-      button {
-        font-size: 1em;
-        padding: 10px 20px;
-      }
-
       #current-time {
         font-size: 4vh;
       }
@@ -160,13 +127,7 @@
   </style>
 </head>
 <body>
-  <div id="password-container">
-    <h1>パスワードを入力してください</h1>
-    <input type="password" id="password" placeholder="パスワード" />
-    <button onclick="checkPassword()">ログイン</button>
-  </div>
-
-  <div id="schedule-container" style="display:none">
+  <div id="schedule-container">
     <div id="current-time">現在時刻: --:--:--</div>
 
     <div class="zone">
@@ -197,9 +158,9 @@
     </div>
   </div>
 
-  <div class="version-label">Version: Beta2.3,1</div>
+
   <script>
-   
+
     const tc_schedule_zone1 = [
   {"time": "08:09:55", "status": "Test Run"},
   {"time": "08:45:25", "status": "Test Run"},
@@ -366,9 +327,9 @@ const tc_schedule_zone3 = [
   } else if (zone === 'zone2') {
     if (elapsed < 132) return '客入れ中';           // 2分12秒 = 132秒
     if (elapsed < 207) return 'インタラクティブ';   // 1分15秒 = 75秒 → 累積132+75=207秒
-    if (elapsed < 669) return '本編再生中';         // 7分24秒 = 444秒 → 累積207+444=651 → 調整して669秒
-    if (elapsed < 699) return '客出し中';           // 30秒 → 累積669+30=699秒
-    if (elapsed < 818) return 'Close';              // 1分59秒 = 119秒 → 累積699+119=818秒
+    if (elapsed < 684) return '本編再生中';         // 7分39秒 = 459秒 → 累積207+459=666 → 調整して684秒
+    if (elapsed < 714) return '客出し中';           // 30秒 → 累積684+30=714秒
+    if (elapsed < 833) return 'Close';              // 1分59秒 = 119秒 → 累積714+119=833秒
   } else if (zone === 'zone3') {
     if (elapsed < 321) return '客入れ中';
     if (elapsed < 573) return '本編再生中';
@@ -393,9 +354,9 @@ const tc_schedule_zone3 = [
     }
 
     function getZoneStatus(schedule, nowSec, zoneType) {
-   const durations = {
-    'zone1': 480 + 213 + 30 + 167,
-    'zone2': 132 + 75 + 444 + 30 + 119,
+  const durations = {
+    'zone1': 480 + 213 + 30 + 167,  // 客入れ + 本編 + 出し + Close
+    'zone2': 132 + 75 + 459 + 30 + 119,  // 客入れ(2:12) + インタラクティブ(1:15) + 本編(7:39) + 客出し(0:30) + Close(1:59)
     'zone3': 321 + 252 + 30 + 150
   };
 
@@ -459,3 +420,4 @@ syncBlinkAnimation();
 <div class="version-label">Version: Beta2.0</div>
 </body>
 </html>
+
