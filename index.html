@@ -5,31 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TC表示スケジュール</title>
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #111;
-      color: #fff;
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      width: 100%;
-      overflow-x: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #111;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;   /* 横スクロール禁止 */
+  /* height: 100vh; ← 削除 */
+  /* display: flex; ← 削除 */
+  /* justify-content: center; ← 削除 */
+  /* align-items: center; ← 削除 */
+}
 
-    #schedule-container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      max-width: 1920px;
-      padding: 20px;
-      box-sizing: border-box;
-      text-align: center;
-    }
+#schedule-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* 上寄せに */
+  align-items: center;
+  width: 100%;
+  max-width: 1920px;
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
+  min-height: 100vh;  /* フル高さ確保（スクロール可） */
+}
+
 
     h1 {
       font-size: 2em;
@@ -86,13 +88,13 @@
       margin-top: 10px;
     }
 
-    #current-time {
-      font-size: 5vh;
-      margin-bottom: 30px;
-      text-align: center;
-      font-weight: bold;
-      color: #0ff;
-    }
+#current-time {
+  font-size: 2em;  /* ← 5vh を削除して固定倍率に */
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: bold;
+  color: #0ff;
+}
 
     .version-label {
       position: fixed;
@@ -417,8 +419,7 @@ syncBlinkAnimation();
     update();
   </script>
 
-<div class="version-label">Version: Beta2.4</div>
+<div class="version-label">Version: Beta2.5</div>
 </body>
 </html>
-
 
